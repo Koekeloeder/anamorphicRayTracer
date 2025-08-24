@@ -69,12 +69,12 @@ bool OBJLoader::hasTexCoords() const { return d_hasTexCoords; }
  */
 void OBJLoader::unitize()
 {
-  float minX = 0;
-  float maxX = 0;
-  float minY = 0;
-  float maxY = 0;
-  float minZ = 0;
-  float maxZ = 0;
+  double minX = 0;
+  double maxX = 0;
+  double minY = 0;
+  double maxY = 0;
+  double minZ = 0;
+  double maxZ = 0;
 
   for (int i = 0; i < d_coordinates.size(); ++i) {
     minX = min(minX, d_coordinates[i].x);
@@ -85,9 +85,9 @@ void OBJLoader::unitize()
     maxZ = max(maxX, d_coordinates[i].z);
   }
 
-  float offsetX = abs(maxX - minX);
-  float offsetY = abs(maxY - minY);
-  float offsetZ = abs(maxZ - minZ);
+  double offsetX = abs(maxX - minX);
+  double offsetY = abs(maxY - minY);
+  double offsetZ = abs(maxZ - minZ);
 
   if (offsetX != 0 && offsetY != 0 && offsetZ != 0) {
     for (int idx = 0; idx < d_coordinates.size(); idx++)
@@ -135,7 +135,7 @@ void OBJLoader::parseLine(string const &line)
 
 void OBJLoader::parseVertex(StringList const &tokens)
 {
-  float x, y, z;
+  double x, y, z;
   x = stof(tokens.at(1)); // 0 is the "v" token
   y = stof(tokens.at(2));
   z = stof(tokens.at(3));
@@ -143,7 +143,7 @@ void OBJLoader::parseVertex(StringList const &tokens)
 }
 
 void OBJLoader::parseNormal(StringList const &tokens) {
-  float x, y, z;
+  double x, y, z;
   x = stof(tokens.at(1));  // 0 is the "vn" token
   y = stof(tokens.at(2));
   z = stof(tokens.at(3));
@@ -153,7 +153,7 @@ void OBJLoader::parseNormal(StringList const &tokens) {
 void OBJLoader::parseTexCoord(StringList const &tokens) {
   d_hasTexCoords = true;  // Texture data will be read
 
-  float u, v;
+  double u, v;
   u = stof(tokens.at(1));  // 0 is the "vt" token
   v = stof(tokens.at(2));
   d_texCoords.push_back(vec2{u, v});

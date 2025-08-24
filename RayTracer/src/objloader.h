@@ -16,8 +16,8 @@ class OBJLoader
 
   struct vec2
   {
-    float u;
-    float v;
+    double u;
+    double v;
   };
 
   std::vector<vec2> d_texCoords;
@@ -27,9 +27,9 @@ class OBJLoader
 public:
   struct vec3
   {
-    float x;
-    float y;
-    float z;
+    double x;
+    double y;
+    double z;
   };
 
   std::vector<vec3> d_coordinates;
